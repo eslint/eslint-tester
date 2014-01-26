@@ -31,7 +31,7 @@ var NODE = "node ", // intentional extra space
     // Files
     JS_FILES = find("lib/").filter(fileType("js")).join(" "),
     // JSON_FILES = find("conf/").filter(fileType("json")).join(" ") + " .eslintrc",
-    TEST_FILES = find("tests/").filter(fileType("js")).join(" ");
+    TEST_FILES = find("tests/lib/").filter(fileType("js")).join(" ");
 
 //------------------------------------------------------------------------------
 // Helpers

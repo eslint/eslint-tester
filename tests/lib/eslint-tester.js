@@ -12,6 +12,7 @@
 
 var rewire = require("rewire"),
     eslintTester = rewire("../../lib/eslint-tester"),
+    path = require("path"),
     assert = require("chai").assert;
 
 //------------------------------------------------------------------------------
@@ -37,6 +38,7 @@ eslintTester.__set__("describe", function(name, method) {
     method.apply(this, arguments);
 });
 
+
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
@@ -46,12 +48,12 @@ describe("ESLintTester", function() {
     it("should not throw an error when everything passes", function() {
 
         assert.doesNotThrow(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "Eval(foo)"
                 ],
                 invalid: [
-                    { code: "eval(foo)", errors: [{ message: "eval can be harmful.", type: "CallExpression"}] }
+                    { code: "eval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression"}] }
                 ]
             });
         });
@@ -60,12 +62,12 @@ describe("ESLintTester", function() {
     it("should throw an error when valid code is invalid", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "eval(foo)"
                 ],
                 invalid: [
-                    { code: "eval(foo)", errors: [{ message: "eval can be harmful.", type: "CallExpression"}] }
+                    { code: "eval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression"}] }
                 ]
             });
         }, /^Should have no errors but had 1/);
@@ -74,12 +76,12 @@ describe("ESLintTester", function() {
     it("should throw an error if invalid code is valid", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "Eval(foo)"
                 ],
                 invalid: [
-                    { code: "Eval(foo)", errors: [{ message: "eval can be harmful.", type: "CallExpression"}] }
+                    { code: "Eval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression"}] }
                 ]
             });
         }, /^Should have 1 errors but had 0/);
@@ -88,12 +90,12 @@ describe("ESLintTester", function() {
     it("should throw an error if invalid code is valid", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "Eval(foo)"
                 ],
                 invalid: [
-                    { code: "Eval(foo)", errors: [{ message: "eval can be harmful.", type: "CallExpression"}] }
+                    { code: "Eval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression"}] }
                 ]
             });
         }, /^Should have 1 errors but had 0/);
@@ -102,12 +104,12 @@ describe("ESLintTester", function() {
     it("should throw an error if invalid code specifies wrong type", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "Eval(foo)"
                 ],
                 invalid: [
-                    { code: "eval(foo)", errors: [{ message: "eval can be harmful.", type: "CallExpression2"}] }
+                    { code: "eval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression2"}] }
                 ]
             });
         }, /^Error type should be CallExpression2/);
@@ -116,12 +118,12 @@ describe("ESLintTester", function() {
     it("should throw an error if invalid code specifies wrong line", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "Eval(foo)"
                 ],
                 invalid: [
-                    { code: "eval(foo)", errors: [{ message: "eval can be harmful.", type: "CallExpression", line: 5 }] }
+                    { code: "eval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression", line: 5 }] }
                 ]
             });
         }, /^Error line should be 5/);
@@ -130,14 +132,14 @@ describe("ESLintTester", function() {
     it("should throw an error if invalid code has the wrong number of errors", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "Eval(foo)"
                 ],
                 invalid: [
                     { code: "eval(foo)", errors: [
-                        { message: "eval can be harmful.", type: "CallExpression" },
-                        { message: "eval can be harmful.", type: "CallExpression" }
+                        { message: "eval sucks.", type: "CallExpression" },
+                        { message: "eval sucks.", type: "CallExpression" }
                     ] }
                 ]
             });
@@ -147,7 +149,7 @@ describe("ESLintTester", function() {
     it("should throw an error if invalid code has the wrong explicit number of errors", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "Eval(foo)"
                 ],
@@ -161,11 +163,11 @@ describe("ESLintTester", function() {
     it("should throw an error if there are no valid tests", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                 ],
                 invalid: [
-                    { code: "Eval(foo)", errors: [{ message: "eval can be harmful.", type: "CallExpression"}] }
+                    { code: "Eval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression"}] }
                 ]
             });
         }, /^Each rule should have at least one valid test/);
@@ -174,9 +176,9 @@ describe("ESLintTester", function() {
     it("should throw an error if there is no valid key", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 invalid: [
-                    { code: "Eval(foo)", errors: [{ message: "eval can be harmful.", type: "CallExpression"}] }
+                    { code: "Eval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression"}] }
                 ]
             });
         }, /^Each rule should have at least one valid test/);
@@ -185,7 +187,7 @@ describe("ESLintTester", function() {
     it("should throw an error if there are no invalid tests", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "Eval(foo)"
                 ],
@@ -199,7 +201,7 @@ describe("ESLintTester", function() {
     it("should throw an error if there is no invalid key", function() {
 
         assert.throws(function() {
-            eslintTester.addRuleTest("no-eval", {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
                 valid: [
                     "Eval(foo)"
                 ]

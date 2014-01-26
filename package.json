@@ -1,0 +1,33 @@
+{
+  "name": "eslint-tester",
+  "author": "Nicholas C. Zakas",
+  "version": "0.0.0",
+  "description": "A testing utility for ESLint",
+  "main": "lib/eslint-tester.js",
+  "scripts": {
+    "test": "node Makefile.js test",
+    "lint": "node Makefile.js lint",
+    "patch": "node Makefile.js patch",
+    "minor": "node Makefile.js minor",
+    "major": "node Makefile.js major"
+  },
+  "keywords": [
+    "eslint",
+    "test"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "chai": "~1.8.1",
+    "mocha": "~1.17.1"
+  },
+  "devDependencies": {
+    "shelljs": "~0.2.6",
+    "dateformat": "~1.0.7-1.2.3",
+    "eslint": "~0.3.0",
+    "rewire": "~2.0.0",
+    "istanbul": "~0.2.4"
+  },
+  "peerDependencies": {
+    "eslint": "*"
+  }
+}

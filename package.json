@@ -23,11 +23,7 @@
   "devDependencies": {
     "shelljs": "~0.2.6",
     "dateformat": "~1.0.7-1.2.3",
-    "eslint": "~0.3.0",
     "rewire": "~2.0.0",
     "istanbul": "~0.2.4"
-  },
-  "peerDependencies": {
-    "eslint": "*"
   }
 }

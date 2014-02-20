@@ -73,6 +73,20 @@ describe("ESLintTester", function() {
         }, /^Should have no errors but had 1/);
     });
 
+    it("should throw an error when valid code is invalid", function() {
+
+        assert.throws(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
+                valid: [
+                    { code: "eval(foo)" }
+                ],
+                invalid: [
+                    { code: "eval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression"}] }
+                ]
+            });
+        }, /^Should have no errors but had 1/);
+    });
+
     it("should throw an error if invalid code is valid", function() {
 
         assert.throws(function() {

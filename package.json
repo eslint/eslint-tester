@@ -18,7 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "chai": "~1.8.1",
-    "mocha": "~1.17.1"
+    "mocha": "~1.17.1",
+    "eslint": "latest"
   },
   "devDependencies": {
     "shelljs": "~0.2.6",

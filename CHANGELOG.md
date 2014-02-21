@@ -1,3 +1,9 @@
+v0.0.5 - February 20, 2014
+
+* 0.0.5 (Nicholas C. Zakas)
+* Add back missing dependency (Nicholas C. Zakas)
+* 0.0.4 (Nicholas C. Zakas)
+
 v0.0.4 - February 20, 2014
 
 * 0.0.4 (Nicholas C. Zakas)

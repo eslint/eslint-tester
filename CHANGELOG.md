@@ -1,3 +1,9 @@
+v0.1.0 - May 20, 2014
+
+* 0.1.0 (Nicholas C. Zakas)
+* Switched to pass in ESLint object (Nicholas C. Zakas)
+* 0.0.5 (Nicholas C. Zakas)
+
 v0.0.5 - February 20, 2014
 
 * 0.0.5 (Nicholas C. Zakas)

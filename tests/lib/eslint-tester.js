@@ -11,7 +11,8 @@
 //------------------------------------------------------------------------------
 
 var rewire = require("rewire"),
-    eslintTester = rewire("../../lib/eslint-tester"),
+    eslint = require("eslint").linter,
+    ESLintTester = rewire("../../lib/eslint-tester"),
     path = require("path"),
     assert = require("chai").assert;
 
@@ -30,11 +31,11 @@ var rewire = require("rewire"),
  * That allows the results of this file to be untainted and therefore accurate.
  */
 
-eslintTester.__set__("it", function(name, method) {
+ESLintTester.__set__("it", function(name, method) {
     method.apply(this, arguments);
 });
 
-eslintTester.__set__("describe", function(name, method) {
+ESLintTester.__set__("describe", function(name, method) {
     method.apply(this, arguments);
 });
 
@@ -44,6 +45,12 @@ eslintTester.__set__("describe", function(name, method) {
 //------------------------------------------------------------------------------
 
 describe("ESLintTester", function() {
+
+    var eslintTester;
+
+    beforeEach(function() {
+        eslintTester = new ESLintTester(eslint);
+    });
 
     it("should not throw an error when everything passes", function() {
 
@@ -222,7 +229,5 @@ describe("ESLintTester", function() {
             });
         }, /^Each rule should have at least one invalid test/);
     });
-
-
 
 });

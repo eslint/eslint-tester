@@ -18,13 +18,13 @@
   "license": "MIT",
   "dependencies": {
     "chai": "~1.8.1",
-    "mocha": "~1.17.1",
-    "eslint": "latest"
+    "mocha": "~1.17.1"
   },
   "devDependencies": {
     "shelljs": "~0.2.6",
     "dateformat": "~1.0.7-1.2.3",
     "rewire": "~2.0.0",
-    "istanbul": "~0.2.4"
+    "istanbul": "~0.2.4",
+    "eslint": "latest"
   }
 }

@@ -150,6 +150,21 @@ describe("ESLintTester", function() {
         }, /^Error line should be 5/);
     });
 
+    it("should throw an error if invalid code specifies wrong column", function() {
+        var wrongColumn = 10,
+            expectedErrorMessage = "Error column should be 1";
+
+        assert.throws(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
+                valid: [ "Eval(foo)" ],
+                invalid: [ {
+                    code: "eval(foo)",
+                    errors: [ { message: "eval sucks.", column: wrongColumn } ]
+                 } ]
+            });
+        }, expectedErrorMessage);
+    });
+
     it("should throw an error if invalid code has the wrong number of errors", function() {
 
         assert.throws(function() {

@@ -181,6 +181,81 @@ describe("ESLintTester", function() {
         }, /^Should have 2 errors but had 1/);
     });
 
+    it("should not throw an error if invalid code has at least an expected empty error object", function() {
+        assert.doesNotThrow(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
+                valid: [ "Eval(foo)" ],
+                invalid: [ {
+                    code: "eval(foo)",
+                    errors: [ {} ]
+                } ]
+            });
+        });
+    });
+
+    it("should pass-through the globals config of valid tests to the to rule", function() {
+        assert.doesNotThrow(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-test-global", {
+                valid: [
+                    "var test = 'foo'",
+                    {
+                        code: "var test2 = 'bar'",
+                        globals: { test: true }
+                    },
+                    {
+                        code: "var test2 = 'bar'",
+                        global: { test: true }
+                    }
+                ],
+                invalid: [ { code: "bar", errors: 1 } ]
+            });
+        });
+    });
+
+    it("should pass-through the globals config of invalid tests to the to rule", function() {
+        assert.doesNotThrow(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-test-global", {
+                valid: [ "var test = 'foo'" ],
+                invalid: [
+                    {
+                        code: "var test = 'foo'; var foo = 'bar'",
+                        errors: 1
+                    },
+                    {
+                        code: "var test = 'foo'",
+                        globals: { foo: true },
+                        errors: [ { message: "Global variable foo should not be used." } ]
+                    },
+                    {
+                        code: "var test = 'foo'",
+                        global: { foo: true },
+                        errors: [ { message: "Global variable foo should not be used." } ]
+                    }
+                ]
+            });
+        });
+    });
+
+    it("should pass-through the args to the rule", function() {
+        assert.doesNotThrow(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-invalid-args", {
+                valid: [
+                    {
+                        code: "var foo = 'bar'",
+                        args: [ 1, false ]
+                    }
+                ],
+                invalid: [
+                    {
+                        code: "var foo = 'bar'",
+                        args: [ 1, true ],
+                        errors: [ { message: "Invalid args" } ]
+                    }
+                ]
+            });
+        });
+    });
+
     it("should throw an error if there are no valid tests", function() {
 
         assert.throws(function() {

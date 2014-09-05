@@ -1,7 +1,7 @@
 {
   "name": "eslint-tester",
   "author": "Nicholas C. Zakas",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A testing utility for ESLint",
   "main": "lib/eslint-tester.js",
   "scripts": {
@@ -28,6 +28,6 @@
     "eslint": "latest"
   },
   "engines": {
-      "node": ">=0.10"
+    "node": ">=0.10"
   }
 }

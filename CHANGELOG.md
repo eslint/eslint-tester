@@ -1,3 +1,11 @@
+v0.2.0 - September 5, 2014
+
+* 0.2.0 (Nicholas C. Zakas)
+* New: testing correct column (fixes #3) (Mathias Schreck)
+* Update: Node 0.8 no longer supported (Mathias Schreck)
+* Update: improve test coverage (fixes #4) (Mathias Schreck)
+* 0.1.0 (Nicholas C. Zakas)
+
 v0.1.0 - May 20, 2014
 
 * 0.1.0 (Nicholas C. Zakas)

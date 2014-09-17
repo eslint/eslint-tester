@@ -3,6 +3,7 @@
   "author": "Nicholas C. Zakas",
   "version": "0.2.0",
   "description": "A testing utility for ESLint",
+  "repository": "eslint/eslint-tester",
   "main": "lib/eslint-tester.js",
   "scripts": {
     "test": "node Makefile.js test",

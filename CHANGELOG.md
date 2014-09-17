@@ -1,3 +1,9 @@
+v0.2.1 - September 17, 2014
+
+* 0.2.1 (Nicholas C. Zakas)
+* Adding repository to package.json (Peter deHaan)
+* 0.2.0 (Nicholas C. Zakas)
+
 v0.2.0 - September 5, 2014
 
 * 0.2.0 (Nicholas C. Zakas)

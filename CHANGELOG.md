@@ -1,3 +1,9 @@
+v0.3.0 - September 24, 2014
+
+* 0.3.0 (Nicholas C. Zakas)
+* Update: add support for settings (fixes #9) (Ilya Volodin)
+* 0.2.1 (Nicholas C. Zakas)
+
 v0.2.1 - September 17, 2014
 
 * 0.2.1 (Nicholas C. Zakas)

@@ -251,6 +251,23 @@ describe("ESLintTester", function() {
         });
     });
 
+    it("should pass-through the settings config to rules", function() {
+        assert.doesNotThrow(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-test-settings", {
+                valid: [
+                    {
+                        code: "var test = 'bar'", settings: { "test": 1 }
+                    }
+                ],
+                invalid: [
+                    {
+                        code: "var test = 'bar'", settings: { "no-test": 22 }, errors: 1
+                    }
+                ]
+            });
+        });
+    });
+
     it("should pass-through the args to the rule", function() {
         assert.doesNotThrow(function() {
             eslintTester.addRuleTest("tests/fixtures/no-invalid-args", {

@@ -288,6 +288,27 @@ describe("ESLintTester", function() {
         });
     });
 
+    it("should pass-through the args to the rule", function() {
+        (function() {
+            eslintTester.addRuleTest("tests/fixtures/no-test-filename", {
+                valid: [
+                    {
+                        code: "var foo = 'bar'",
+                        filename: 'somefile.js'
+                    }
+                ],
+                invalid: [
+                    {
+                        code: "var foo = 'bar'",
+                        errors: [
+                            { message: "Filename test was not defined." }
+                        ]
+                    }
+                ]
+            });
+        })();
+    });
+
     it("should throw an error if there are no valid tests", function() {
 
         assert.throws(function() {

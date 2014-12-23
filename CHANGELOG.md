@@ -1,3 +1,9 @@
+v0.4.0 - December 23, 2014
+
+* 0.4.0 (Nicholas C. Zakas)
+* Update: add support for filename (fixes #12). (Stefan Lau)
+* 0.3.0 (Nicholas C. Zakas)
+
 v0.3.0 - September 24, 2014
 
 * 0.3.0 (Nicholas C. Zakas)

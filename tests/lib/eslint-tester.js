@@ -294,7 +294,7 @@ describe("ESLintTester", function() {
                 valid: [
                     {
                         code: "var foo = 'bar'",
-                        filename: 'somefile.js'
+                        filename: "somefile.js"
                     }
                 ],
                 invalid: [
@@ -308,6 +308,28 @@ describe("ESLintTester", function() {
             });
         })();
     });
+
+    it("should pass-through the options to the rule", function() {
+        assert.doesNotThrow(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-invalid-args", {
+                valid: [
+                    {
+                        code: "var foo = 'bar'",
+                        options: [ false ]
+                    }
+                ],
+                invalid: [
+                    {
+                        code: "var foo = 'bar'",
+                        options: [ true ],
+                        errors: [ { message: "Invalid args" } ]
+                    }
+                ]
+            });
+        });
+    });
+
+
 
     it("should throw an error if there are no valid tests", function() {
 

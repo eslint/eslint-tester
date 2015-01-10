@@ -1,3 +1,11 @@
+v0.5.0 - January 10, 2015
+
+* 0.5.0 (Nicholas C. Zakas)
+* New: Add options option (fixes #15) (Nicholas C. Zakas)
+* Update: Add ecmaFeatures support (fixes #14) (Nicholas C. Zakas)
+* Upgrade: dev dependencies (Nicholas C. Zakas)
+* 0.4.0 (Nicholas C. Zakas)
+
 v0.4.0 - December 23, 2014
 
 * 0.4.0 (Nicholas C. Zakas)

@@ -1,7 +1,7 @@
 {
   "name": "eslint-tester",
   "author": "Nicholas C. Zakas",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A testing utility for ESLint",
   "repository": "eslint/eslint-tester",
   "main": "lib/eslint-tester.js",

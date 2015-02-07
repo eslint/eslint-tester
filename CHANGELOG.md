@@ -1,3 +1,9 @@
+v0.6.0 - February 7, 2015
+
+* 0.6.0 (Nicholas C. Zakas)
+* Breaking: Look for nodeType instead of node.type (Nicholas C. Zakas)
+* 0.5.0 (Nicholas C. Zakas)
+
 v0.5.0 - January 10, 2015
 
 * 0.5.0 (Nicholas C. Zakas)

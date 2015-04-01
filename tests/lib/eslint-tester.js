@@ -11,6 +11,7 @@
 //------------------------------------------------------------------------------
 
 var rewire = require("rewire"),
+    sinon = require("sinon"),
     eslint = require("eslint").linter,
     ESLintTester = rewire("../../lib/eslint-tester"),
     path = require("path"),
@@ -326,6 +327,28 @@ describe("ESLintTester", function() {
                     }
                 ]
             });
+        });
+    });
+
+    it("should pass-through the parser to the rule", function() {
+
+        assert.doesNotThrow(function() {
+            var spy = sinon.spy(eslintTester.eslint, "verify");
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
+                valid: [
+                    {
+                        code: "Eval(foo)",
+                    }
+                ],
+                invalid: [
+                    {
+                        code: "eval(foo)",
+                        parser: "esprima",
+                        errors: [ {} ]
+                    }
+                ]
+            });
+            assert.equal(spy.args[1][1].parser, "esprima");
         });
     });
 

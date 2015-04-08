@@ -19,6 +19,9 @@
   "license": "MIT",
   "dependencies": {
     "chai": "^1.10.0",
+    "lodash.clonedeep": "^3.0.0",
+    "lodash.merge": "^3.1.0",
+    "lodash.omit": "^3.1.0",
     "mocha": "~1.17.1"
   },
   "devDependencies": {

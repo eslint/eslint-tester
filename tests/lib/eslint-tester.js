@@ -353,6 +353,38 @@ describe("ESLintTester", function() {
         });
     });
 
+    it("should prevent invalid options schemas", function() {
+
+        assert.throws(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-invalid-schema", {
+                valid: [
+                    "var answer = 6 * 7;",
+                    { code: "var answer = 6 * 7;", options: [] }
+                ],
+                invalid: [
+                    { code: "var answer = 6 * 7;", options: ["bar"], errors: [{ message: "Expected nothing." }] }
+                ]
+            });
+        }, /Schema for rule .* is invalid/);
+
+    });
+
+    it("should prevent schema violations in options", function() {
+
+        assert.throws(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-schema-violation", {
+                valid: [
+                    "var answer = 6 * 7;",
+                    { code: "var answer = 6 * 7;", options: ["foo"] }
+                ],
+                invalid: [
+                    { code: "var answer = 6 * 7;", options: ["bar"], errors: [{ message: "Expected foo." }] }
+                ]
+            });
+        }, /Value "bar" must be an enum value./);
+
+    });
+
 
 
     it("should throw an error if there are no valid tests", function() {

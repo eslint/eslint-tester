@@ -50,6 +50,7 @@ describe("ESLintTester", function() {
     var eslintTester;
 
     beforeEach(function() {
+        ESLintTester.resetDefaultConfig();
         eslintTester = new ESLintTester(eslint);
     });
 
@@ -401,6 +402,70 @@ describe("ESLintTester", function() {
                 ]
             });
         }, /^Each rule should have at least one invalid test/);
+    });
+
+    it("should pass-through the tester config to the to rule", function() {
+        eslintTester = new ESLintTester(eslint, {
+            global: { test: true }
+        });
+        assert.doesNotThrow(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-test-global", {
+                valid: [
+                    "var test = 'foo'",
+                    "var test2 = test"
+                ],
+                invalid: [ { code: "bar", errors: 1, global: { foo: true } } ]
+            });
+        });
+    });
+
+    it("should correctly set the global configuration", function() {
+        var config = { global: { test: true } };
+        ESLintTester.setDefaultConfig(config);
+        assert(
+            ESLintTester.getDefaultConfig().global.test,
+            "The default config object is incorrect"
+        );
+    });
+
+    it("should correctly reset the global configuration", function() {
+        var config = { global: { test: true } };
+        ESLintTester.setDefaultConfig(config);
+        ESLintTester.resetDefaultConfig();
+        assert.deepEqual(
+            ESLintTester.getDefaultConfig(),
+            { rules: {} },
+            "The default configuration has not reset correctly"
+        );
+    });
+
+    it("should enforce the global configuration to be an object", function() {
+        function setConfig(config) {
+            return function() {
+                ESLintTester.setDefaultConfig(config);
+            };
+        }
+        assert.throw(setConfig());
+        assert.throw(setConfig(1));
+        assert.throw(setConfig(3.14));
+        assert.throw(setConfig("foo"));
+        assert.throw(setConfig(null));
+        assert.throw(setConfig(true));
+    });
+
+    it("should pass-through the global config to the tester then to the to rule", function() {
+        var config = { global: { test: true } };
+        ESLintTester.setDefaultConfig(config);
+        eslintTester = new ESLintTester(eslint);
+        assert.doesNotThrow(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-test-global", {
+                valid: [
+                    "var test = 'foo'",
+                    "var test2 = test"
+                ],
+                invalid: [ { code: "bar", errors: 1, global: { foo: true } } ]
+            });
+        });
     });
 
 });

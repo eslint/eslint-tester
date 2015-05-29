@@ -1,3 +1,10 @@
+v0.7.0 - May 28, 2015
+
+* 0.7.0 (Ilya Volodin)
+* New: Added the option to set global and tester level configuration. Rules configuration result in `global <= tester <= test case`. (fixes #19) (Michael Ferris)
+* Update: add support for parser (fixes #17) (Yannick Croissant)
+* 0.6.0 (Nicholas C. Zakas)
+
 v0.6.0 - February 7, 2015
 
 * 0.6.0 (Nicholas C. Zakas)

@@ -1,3 +1,9 @@
+v0.8.0 - June 14, 2015
+
+* 0.8.0 (Ilya Volodin)
+* Breaking: Validate test options (refs eslint/eslint#2179) (Brandon Mills)
+* 0.7.0 (Ilya Volodin)
+
 v0.7.0 - May 28, 2015
 
 * 0.7.0 (Ilya Volodin)

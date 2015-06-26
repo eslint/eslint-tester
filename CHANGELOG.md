@@ -1,3 +1,8 @@
+v0.8.2 - June 26, 2015
+
+* 0.8.2 (Ilya Volodin)
+* Upgrade: Move Eslint to dependencies (Gyandeep Singh)
+
 v0.8.1 - June 26, 2015
 
 * 0.8.1 (Nicholas C. Zakas)

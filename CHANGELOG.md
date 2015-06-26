@@ -1,3 +1,9 @@
+v0.8.1 - June 26, 2015
+
+* 0.8.1 (Nicholas C. Zakas)
+* Fix: Move is-my-json-valid to dependencies (fixes #22) (Gyandeep Singh)
+* 0.8.0 (Ilya Volodin)
+
 v0.8.0 - June 14, 2015
 
 * 0.8.0 (Ilya Volodin)

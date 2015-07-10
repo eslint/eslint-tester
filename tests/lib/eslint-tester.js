@@ -152,6 +152,21 @@ describe("ESLintTester", function() {
         }, /^Error line should be 5/);
     });
 
+    it("should not skip line assertion if line is a falsy value", function() {
+        var expectedErrorMessage = "Error line should be 0: expected 2 to equal 0";
+
+        assert.throws(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
+                valid: [
+                    "Eval(foo)"
+                ],
+                invalid: [
+                    { code: "\neval(foo)", errors: [{ message: "eval sucks.", type: "CallExpression", line: 0 }] }
+                ]
+            });
+        }, expectedErrorMessage);
+    });
+
     it("should throw an error if invalid code specifies wrong column", function() {
         var wrongColumn = 10,
             expectedErrorMessage = "Error column should be 1";
@@ -163,6 +178,20 @@ describe("ESLintTester", function() {
                     code: "eval(foo)",
                     errors: [ { message: "eval sucks.", column: wrongColumn } ]
                  } ]
+            });
+        }, expectedErrorMessage);
+    });
+
+    it("should not skip column assertion if column is a falsy value", function() {
+        var expectedErrorMessage = "Error column should be 0: expected 9 to equal 0";
+
+        assert.throws(function() {
+            eslintTester.addRuleTest("tests/fixtures/no-eval", {
+                valid: [ "Eval(foo)" ],
+                invalid: [ {
+                    code: "var foo; eval(foo)",
+                    errors: [ { message: "eval sucks.", column: 0 } ]
+                } ]
             });
         }, expectedErrorMessage);
     });
